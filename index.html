@@ -7,28 +7,34 @@
 <meta name="description" content="ייעוץ פיננסי אישי למשפחות, עצמאים ובעלי עסקים - פנסיה, השקעות, משכנתאות ותזרים. ליווי צמוד, שקיפות מלאה, בלי ז'רגון." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   /* ============ Tokens ============ */
   :root{
-    --ink:#1c2b26;
-    --ink-soft:#51625c;
-    --ground:#f4f1ea;
+    --ink:#182420;
+    --ink-soft:#48564f;
+    --ground:#f6f2ea;
     --surface:#ffffff;
-    --surface-tint:#e7e2d3;
-    --primary:#1f3b32;
-    --primary-strong:#132821;
-    --accent:#bd6b3e;
-    --accent-strong:#9c552f;
-    --accent-soft:#e7c6ac;
-    --gold:#a9895b;
-    --line:#ddd6c5;
-    --shadow: 0 20px 45px -25px rgba(19,40,33,.35);
-    --radius-lg: 22px;
-    --radius-md: 14px;
-    --font-display: 'David Libre', 'Times New Roman', serif;
+    --surface-tint:#ece5d3;
+    --primary:#1f3d33;
+    --primary-strong:#102019;
+    --primary-soft:#e4ece8;
+    --accent:#b25e2e;
+    --accent-strong:#8c4720;
+    --accent-soft:#f0d9c3;
+    --gold:#a3854f;
+    --line:#ddd3bd;
+    --line-soft:#e8e1cf;
+    --shadow-sm: 0 8px 20px -14px rgba(16,32,25,.35);
+    --shadow: 0 24px 50px -26px rgba(16,32,25,.4);
+    --shadow-lg: 0 34px 70px -30px rgba(16,32,25,.45);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+    --font-display: 'Frank Ruhl Libre', 'David Libre', 'Times New Roman', serif;
     --font-body: 'Assistant', 'Segoe UI', Arial, sans-serif;
-    --maxw: 1160px;
+    --maxw: 1180px;
+    --ease: cubic-bezier(.22,.85,.32,1);
   }
 
   *,*::before,*::after{ box-sizing:border-box; }
@@ -46,6 +52,7 @@
     line-height:1.7;
     font-size:16.5px;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
 
   img,svg{ display:block; max-width:100%; }
@@ -62,20 +69,21 @@
   p{ margin:0; }
 
   .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-size:.78rem;
+    display:inline-block;
+    max-width:100%;
+    font-size:.8rem;
     font-weight:700;
-    letter-spacing:.13em;
+    letter-spacing:.04em;
     color:var(--accent-strong);
-    text-transform:uppercase;
   }
   .eyebrow::before{
     content:"";
-    width:22px; height:2px;
+    width:24px; height:2px;
+    border-radius:2px;
     background:var(--accent);
     display:inline-block;
+    vertical-align:middle;
+    margin-inline-end:9px;
   }
 
   .btn{
@@ -84,64 +92,79 @@
     justify-content:center;
     gap:8px;
     padding:15px 30px;
-    border-radius:10px;
+    border-radius:12px;
     font-family:var(--font-body);
     font-weight:700;
     font-size:1rem;
     border:1.5px solid transparent;
     cursor:pointer;
     text-decoration:none;
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    transition:transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
   }
   .btn:focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
   .btn-primary{
     background:var(--accent);
     color:#fff8f0;
-    box-shadow:var(--shadow);
+    box-shadow:var(--shadow-sm);
   }
-  .btn-primary:hover{ transform:translateY(-2px); background:var(--accent-strong); }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--accent-strong); box-shadow:var(--shadow); }
   .btn-ghost{
     background:transparent;
     color:var(--primary-strong);
     border-color:var(--line);
   }
-  .btn-ghost:hover{ background:var(--surface-tint); }
+  .btn-ghost:hover{ background:var(--surface); border-color:var(--primary); }
 
   /* ============ Header ============ */
   header.nav{
     position:sticky; top:0; z-index:50;
-    background:rgba(244,241,234,.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
+    background:rgba(246,242,234,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
   }
   .nav-row{
     display:flex; align-items:center; justify-content:space-between;
     padding-block:14px;
+    gap:10px;
   }
   .brand{
     font-family:var(--font-display);
-    font-size:1.25rem;
+    font-size:1.28rem;
     font-weight:700;
     color:var(--primary-strong);
     text-decoration:none;
-    display:flex; align-items:center; gap:10px;
+    display:flex; align-items:center; gap:11px;
+    min-width:0;
+    white-space:nowrap;
+    overflow:hidden;
   }
+  .brand span:not(.mark){ min-width:0; overflow:hidden; text-overflow:ellipsis; }
   .brand .mark{
-    width:36px; height:36px;
-    border-radius:9px;
+    width:38px; height:38px;
+    border-radius:10px;
     background:linear-gradient(150deg,var(--primary),var(--primary-strong));
     display:flex; align-items:center; justify-content:center;
-    color:#f4f1ea; font-size:1.05rem; font-family:var(--font-display);
+    color:#f4f1ea; font-size:1.1rem; font-family:var(--font-display);
     flex:none;
+    box-shadow:var(--shadow-sm);
+  }
+  @media (max-width:400px){
+    .brand{ font-size:1.05rem; gap:8px; }
+    .brand .mark{ width:32px; height:32px; font-size:.95rem; }
   }
   .nav-links{
-    display:none; gap:28px; list-style:none; margin:0; padding:0;
+    display:none; gap:30px; list-style:none; margin:0; padding:0;
     font-size:.95rem; font-weight:600;
   }
   @media (min-width:880px){ .nav-links{ display:flex; } }
-  .nav-links a{ text-decoration:none; color:var(--ink-soft); transition:color .15s; }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); transition:color .15s; position:relative; }
   .nav-links a:hover{ color:var(--accent-strong); }
-  .nav-cta{ display:flex; align-items:center; gap:12px; }
+  .nav-cta{ display:flex; align-items:center; gap:10px; flex:none; }
+  .nav-btn{ padding:11px 22px; font-size:.92rem; white-space:nowrap; }
+  @media (max-width:400px){
+    .nav-cta{ gap:6px; }
+    .nav-btn{ padding:9px 14px; font-size:.8rem; }
+  }
   .nav-phone{
     display:none;
     font-size:.9rem; font-weight:700; color:var(--primary-strong); text-decoration:none;
@@ -150,120 +173,150 @@
   @media (min-width:760px){ .nav-phone{ display:inline-flex; } }
   .nav-toggle{
     display:inline-flex; background:none; border:1px solid var(--line); border-radius:10px;
-    padding:8px; cursor:pointer;
+    padding:8px; cursor:pointer; color:var(--primary-strong); flex:none;
   }
   @media (min-width:880px){ .nav-toggle{ display:none; } }
+  @media (max-width:400px){ .nav-toggle{ padding:6px; } }
   .nav-links.open{
     display:flex;
     position:absolute; inset-inline:0; top:100%;
     background:var(--surface);
     flex-direction:column; padding:18px 24px; gap:16px;
     border-bottom:1px solid var(--line);
+    box-shadow:var(--shadow);
   }
 
   /* ============ Hero ============ */
   .hero{
     position:relative;
     overflow:hidden;
-    padding-block:60px 84px;
-    border-bottom:1px solid var(--line);
-  }
-  .hero-chart{
-    position:absolute; inset-inline-start:0; bottom:0; width:100%; height:140px;
-    color:var(--surface-tint);
-    z-index:0;
+    padding-block:56px 90px;
+    border-bottom:1px solid var(--line-soft);
+    background:
+      radial-gradient(680px 420px at 88% -8%, var(--primary-soft) 0%, transparent 65%),
+      var(--ground);
   }
   .hero-grid{
     position:relative; z-index:1;
-    display:grid; grid-template-columns:1fr; gap:48px; align-items:center;
+    display:grid; grid-template-columns:1fr; gap:52px; align-items:center;
   }
-  @media (min-width:900px){ .hero-grid{ grid-template-columns:1.15fr .85fr; } }
+  @media (min-width:900px){ .hero-grid{ grid-template-columns:1.12fr .88fr; } }
 
   .hero h1{
-    font-size:clamp(2rem, 4vw, 3.1rem);
-    line-height:1.25;
+    font-size:clamp(2.05rem, 4vw, 3.25rem);
+    line-height:1.24;
+    margin-top:18px;
   }
   .hero h1 span{ color:var(--accent-strong); }
   .hero-sub{
     margin-top:20px;
-    font-size:1.12rem;
+    font-size:1.14rem;
     color:var(--ink-soft);
     max-width:54ch;
   }
   .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
 
   .trust-row{
-    display:flex; flex-wrap:wrap; gap:12px;
-    margin-top:34px;
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:36px;
   }
   .trust-chip{
-    display:inline-flex; align-items:center; gap:8px;
+    display:inline-block;
+    max-width:100%;
     background:var(--surface);
     border:1px solid var(--line);
     padding:9px 16px;
-    border-radius:10px;
+    border-radius:22px;
     font-size:.85rem; font-weight:600;
+    line-height:1.5;
     color:var(--ink-soft);
   }
-  .trust-chip svg{ width:16px; height:16px; color:var(--accent-strong); flex:none; }
+  .trust-chip .dot{
+    width:24px; height:24px; border-radius:50%;
+    background:var(--primary-soft);
+    display:inline-flex; align-items:center; justify-content:center;
+    vertical-align:middle;
+    margin-inline-end:9px;
+  }
+  .trust-chip svg{ width:14px; height:14px; color:var(--primary); }
 
+  /* Hero visual panel */
+  .hero-visual{ position:relative; max-width:400px; margin-inline:auto; }
   .hero-card{
     position:relative;
     background:var(--surface);
     border:1px solid var(--line);
     border-radius:var(--radius-lg);
-    box-shadow:var(--shadow);
-    padding:10px;
-    max-width:380px;
-    margin-inline:auto;
+    box-shadow:var(--shadow-lg);
+    padding:26px 24px 34px;
   }
-  .hero-card .frame{
-    aspect-ratio:4/5;
-    border-radius:16px;
-    background:linear-gradient(165deg, var(--surface-tint), var(--ground));
-    border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    position:relative;
+  .hero-card .panel-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .hero-card .panel-title{
+    font-size:.78rem; font-weight:700; color:var(--ink-soft); letter-spacing:.02em;
+  }
+  .hero-card .panel-pulse{
+    width:9px; height:9px; border-radius:50%; background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft);
+  }
+  .hero-chart-wrap{
+    border-radius:var(--radius-md);
+    background:linear-gradient(180deg, var(--primary-soft), var(--surface) 70%);
+    border:1px solid var(--line-soft);
+    padding:20px 16px 6px;
     overflow:hidden;
   }
-  .hero-card .frame::before{
-    content:"";
-    position:absolute; inset:12px;
-    border:1px solid var(--accent-soft);
-    border-radius:10px;
+  .hero-chart-wrap svg{ width:100%; height:auto; overflow:visible; }
+  .hero-tags{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-top:18px;
   }
-  .hero-card .frame svg{ width:42%; color:var(--primary); }
+  .hero-tags span{
+    font-size:.78rem; font-weight:700;
+    color:var(--primary-strong);
+    background:var(--primary-soft);
+    border-radius:8px;
+    padding:6px 12px;
+  }
   .hero-card .badge{
-    position:absolute; bottom:-16px; inset-inline-start:22px;
+    position:absolute; bottom:-18px; inset-inline-start:24px;
     background:var(--primary-strong);
     color:#f4f1ea;
-    border-radius:999px;
-    padding:10px 18px;
+    border-radius:22px;
+    padding:11px 20px;
     box-shadow:var(--shadow);
     font-size:.82rem; font-weight:700;
-    display:flex; align-items:center; gap:8px;
+    line-height:1.5;
+    max-width:calc(100% - 30px);
   }
-  .hero-card .badge svg{ width:15px; height:15px; color:var(--gold); }
+  .hero-card .badge svg{ width:15px; height:15px; color:var(--gold); display:inline-block; vertical-align:middle; margin-inline-end:8px; }
 
   /* ============ Section shell ============ */
-  section{ padding-block:76px; }
+  section{ padding-block:clamp(60px, 9vw, 96px); }
   .section-head{
     max-width:640px;
-    margin-bottom:40px;
+    margin-bottom:44px;
   }
   .section-head h2{
-    font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+    font-size:clamp(1.6rem, 2.8vw, 2.2rem);
     margin-top:14px;
   }
   .section-head p{
     margin-top:14px;
     color:var(--ink-soft);
-    font-size:1.05rem;
+    font-size:1.06rem;
   }
   .tint{ background:var(--surface-tint); }
 
-  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
   .reveal.in{ opacity:1; transform:none; }
+  .card-grid .reveal:nth-child(2){ transition-delay:.08s; }
+  .card-grid .reveal:nth-child(3){ transition-delay:.16s; }
+  .values-grid .reveal:nth-child(2){ transition-delay:.06s; }
+  .values-grid .reveal:nth-child(3){ transition-delay:.12s; }
+  .values-grid .reveal:nth-child(4){ transition-delay:.18s; }
 
   /* ============ Pain / Dream cards ============ */
   .card-grid{
@@ -272,32 +325,34 @@
   }
   .feel-card{
     background:var(--surface);
-    border:1px solid var(--line);
-    border-top:3px solid var(--accent);
+    border:1px solid var(--line-soft);
     border-radius:var(--radius-md);
-    padding:26px;
+    padding:28px;
     display:flex; flex-direction:column; gap:14px;
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
   }
-  .feel-card.dream{ border-top-color:var(--primary); }
+  .feel-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--line); }
   .feel-card .icon{
-    width:42px; height:42px;
-    border-radius:11px;
-    background:var(--surface-tint);
+    width:44px; height:44px;
+    border-radius:12px;
+    background:var(--accent-soft);
     display:flex; align-items:center; justify-content:center;
     flex:none;
   }
-  .feel-card.dream .icon{ background:rgba(31,59,50,.08); }
+  .feel-card.dream .icon{ background:var(--primary-soft); }
   .feel-card .icon svg{ width:22px; height:22px; color:var(--accent-strong); }
   .feel-card.dream .icon svg{ color:var(--primary); }
   .feel-card p{ color:var(--ink-soft); font-size:.98rem; }
-  .feel-card strong{ display:block; color:var(--ink); font-size:1.05rem; font-weight:700; }
+  .feel-card strong{ display:block; color:var(--ink); font-size:1.06rem; font-weight:700; }
 
   .bridge-line{
-    margin-top:38px;
+    margin-top:40px;
     font-family:var(--font-display);
-    font-size:1.2rem;
+    font-size:1.25rem;
     color:var(--primary-strong);
     text-align:center;
+    max-width:52ch;
+    margin-inline:auto;
   }
 
   /* ============ Values ============ */
@@ -309,63 +364,74 @@
   .value-card{
     background:var(--surface);
     border-radius:var(--radius-lg);
-    padding:30px 26px;
-    box-shadow:var(--shadow);
+    padding:32px 28px;
+    box-shadow:var(--shadow-sm);
+    border:1px solid var(--line-soft);
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
   }
+  .value-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
   .value-card .icon{
-    width:48px; height:48px;
-    border-radius:12px;
+    width:50px; height:50px;
+    border-radius:14px;
     background:linear-gradient(150deg, var(--primary), var(--primary-strong));
     display:flex; align-items:center; justify-content:center;
-    margin-bottom:18px;
+    margin-bottom:20px;
   }
   .value-card .icon svg{ width:24px; height:24px; color:#f4f1ea; }
-  .value-card h3{ font-size:1.15rem; margin-bottom:10px; }
+  .value-card h3{ font-size:1.18rem; margin-bottom:10px; }
   .value-card p{ color:var(--ink-soft); font-size:.98rem; }
 
   /* ============ About ============ */
   .about-grid{
-    display:grid; grid-template-columns:1fr; gap:44px; align-items:center;
+    display:grid; grid-template-columns:1fr; gap:48px; align-items:center;
   }
-  @media (min-width:880px){ .about-grid{ grid-template-columns:.8fr 1.2fr; } }
+  @media (min-width:880px){ .about-grid{ grid-template-columns:.78fr 1.22fr; } }
+  .about-photo-wrap{ position:relative; max-width:320px; margin-inline:auto; }
+  .about-photo-wrap::before{
+    content:"";
+    position:absolute; inset:14px -14px -14px 14px;
+    border:1.5px solid var(--accent);
+    border-radius:var(--radius-lg);
+    z-index:0;
+  }
   .about-photo{
-    position:relative;
+    position:relative; z-index:1;
     aspect-ratio:4/5;
     border-radius:var(--radius-lg);
-    background:linear-gradient(165deg, var(--surface-tint), var(--ground));
+    background:linear-gradient(165deg, var(--primary-soft), var(--surface-tint));
     border:1px solid var(--line);
     display:flex; align-items:center; justify-content:center;
-    max-width:320px;
-    margin-inline:auto;
+    box-shadow:var(--shadow);
   }
-  .about-photo svg{ width:34%; color:var(--primary); }
+  .about-photo svg{ width:32%; color:var(--primary); }
   .about-photo .tag{
-    position:absolute; top:18px; inset-inline-start:18px;
+    position:absolute; top:16px; inset-inline-start:16px;
     background:var(--surface);
     border-radius:8px;
     padding:8px 14px;
     font-size:.78rem; font-weight:700;
-    box-shadow:var(--shadow);
+    box-shadow:var(--shadow-sm);
+    z-index:2;
   }
-  .about-copy p{ color:var(--ink-soft); margin-top:16px; font-size:1.03rem; }
-  .about-copy h2{ font-size:clamp(1.55rem,2.8vw,2.05rem); }
+  .about-copy p{ color:var(--ink-soft); margin-top:16px; font-size:1.04rem; }
+  .about-copy h2{ font-size:clamp(1.6rem,2.8vw,2.1rem); margin-top:14px; }
   .signature{
-    margin-top:24px;
+    margin-top:26px;
     font-family:var(--font-display);
-    font-size:1.35rem;
+    font-size:1.4rem;
     color:var(--accent-strong);
   }
 
   .specialties{
     display:flex; flex-wrap:wrap; gap:12px;
-    margin-top:26px;
+    margin-top:28px;
   }
   .spec-chip{
     background:var(--surface);
     border:1px solid var(--line);
     color:var(--primary-strong);
     padding:9px 20px;
-    border-radius:8px;
+    border-radius:9px;
     font-weight:700;
     font-size:.9rem;
   }
@@ -375,26 +441,43 @@
     display:grid; grid-template-columns:1fr; gap:0;
     background:var(--surface);
     border-radius:var(--radius-lg);
-    box-shadow:var(--shadow);
+    box-shadow:var(--shadow-lg);
     overflow:hidden;
   }
   @media (min-width:900px){ .contact-wrap{ grid-template-columns:.9fr 1.1fr; } }
   .contact-info{
+    position:relative;
     background:linear-gradient(160deg, var(--primary-strong), var(--primary));
     color:#f4f1ea;
-    padding:44px 36px;
+    padding:46px 38px;
     display:flex; flex-direction:column; gap:22px;
+    overflow:hidden;
   }
-  .contact-info h3{ color:#f4f1ea; font-size:1.35rem; }
-  .contact-info p{ color:rgba(244,241,234,.8); font-size:.98rem; }
+  .contact-info::after{
+    content:"";
+    position:absolute; inset-inline-end:-60px; top:-60px;
+    width:220px; height:220px; border-radius:50%;
+    background:rgba(244,241,234,.06);
+  }
+  .contact-info h3{ color:#f4f1ea; font-size:1.4rem; position:relative; }
+  .contact-info p{ color:rgba(244,241,234,.78); font-size:.98rem; position:relative; }
   .contact-detail{
-    display:flex; align-items:center; gap:12px;
+    display:block;
     font-size:.95rem;
+    line-height:1.6;
     text-decoration:none;
     color:#f4f1ea;
+    position:relative;
   }
-  .contact-detail svg{ width:19px; height:19px; flex:none; color:var(--gold); }
-  .contact-form{ padding:44px 36px; }
+  .contact-detail .ico{
+    width:34px; height:34px; border-radius:9px;
+    background:rgba(244,241,234,.1);
+    display:inline-flex; align-items:center; justify-content:center;
+    vertical-align:middle;
+    margin-inline-end:12px;
+  }
+  .contact-detail svg{ width:17px; height:17px; color:var(--gold); }
+  .contact-form{ padding:46px 38px; }
   .form-row{ display:grid; gap:18px; }
   @media (min-width:560px){ .form-row.two{ grid-template-columns:1fr 1fr; } }
   label{
@@ -404,8 +487,8 @@
     width:100%;
     font-family:var(--font-body);
     font-size:.98rem;
-    padding:13px 15px;
-    border-radius:10px;
+    padding:13px 16px;
+    border-radius:11px;
     border:1.5px solid var(--line);
     background:var(--ground);
     color:var(--ink);
@@ -414,7 +497,7 @@
   input:focus, textarea:focus{
     outline:none;
     border-color:var(--accent);
-    box-shadow:0 0 0 4px rgba(189,107,62,.14);
+    box-shadow:0 0 0 4px var(--accent-soft);
   }
   textarea{ resize:vertical; min-height:90px; }
   .form-foot{
@@ -432,7 +515,7 @@
 
   /* ============ Footer ============ */
   footer{
-    border-top:1px solid var(--line);
+    border-top:1px solid var(--line-soft);
     padding-block:36px;
     margin-top:20px;
   }
@@ -452,9 +535,10 @@
     background:#25D366;
     display:flex; align-items:center; justify-content:center;
     box-shadow:0 12px 30px -10px rgba(0,0,0,.4);
-    transition:transform .18s ease;
+    transition:transform .2s var(--ease);
   }
   .wa-float:hover{ transform:scale(1.07); }
+  .wa-float:focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
   .wa-float svg{ width:27px; height:27px; color:#fff; }
 </style>
 </head>
@@ -479,7 +563,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.79.63 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.3 1.75.51 2.65.63A2 2 0 0 1 22 16.92z"/></svg>
         050-1234567
       </a>
-      <a href="#contact" class="btn btn-primary" style="padding:11px 22px; font-size:.92rem;">בוא/י נדבר</a>
+      <a href="#contact" class="btn btn-primary nav-btn">בוא/י נדבר</a>
       <button class="nav-toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -491,9 +575,6 @@
 
   <!-- HERO -->
   <section class="hero">
-    <svg class="hero-chart" viewBox="0 0 1160 140" preserveAspectRatio="none" aria-hidden="true">
-      <polyline points="0,120 120,105 240,115 360,80 480,90 600,55 720,65 840,35 960,45 1080,15 1160,20" fill="none" stroke="currentColor" stroke-width="3"/>
-    </svg>
     <div class="container hero-grid">
       <div>
         <span class="eyebrow">ייעוץ פיננסי אישי · משפחות, עצמאים ובעלי עסקים</span>
@@ -511,27 +592,49 @@
         </div>
         <div class="trust-row">
           <span class="trust-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></span>
             3 שנות ניסיון בייעוץ פיננסי
           </span>
           <span class="trust-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
             פנסיה · השקעות · משכנתאות · מימון עסקי
           </span>
           <span class="trust-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
             ליווי אישי וצמוד
           </span>
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="frame">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h6v6"/></svg>
-        </div>
-        <div class="badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 16.9l-6.2 3.4 1.6-6.8L2.2 8.9l6.9-.6z"/></svg>
-          ישראל ישראלי, יועץ פיננסי מוסמך
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="panel-head">
+            <span class="panel-title">תמונת מצב פיננסית</span>
+            <span class="panel-pulse" aria-hidden="true"></span>
+          </div>
+          <div class="hero-chart-wrap">
+            <svg viewBox="0 0 320 160" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="heroArea" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1f3d33" stop-opacity=".22"/>
+                  <stop offset="100%" stop-color="#1f3d33" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <polyline points="0,150 0,120 40,128 80,100 120,108 160,72 200,82 240,46 280,54 320,20 320,150" fill="url(#heroArea)" stroke="none"/>
+              <polyline points="0,120 40,128 80,100 120,108 160,72 200,82 240,46 280,54 320,20" fill="none" stroke="#b25e2e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="320" cy="20" r="6" fill="#b25e2e"/>
+            </svg>
+          </div>
+          <div class="hero-tags">
+            <span>פנסיה</span>
+            <span>השקעות</span>
+            <span>משכנתא</span>
+            <span>תזרים</span>
+          </div>
+          <div class="badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 16.9l-6.2 3.4 1.6-6.8L2.2 8.9l6.9-.6z"/></svg>
+            ישראל ישראלי, יועץ פיננסי מוסמך
+          </div>
         </div>
       </div>
     </div>
@@ -649,9 +752,11 @@
   <!-- ABOUT -->
   <section id="about" class="tint">
     <div class="container about-grid">
-      <div class="about-photo reveal">
-        <span class="tag">יועץ פיננסי מוסמך</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h6v6"/></svg>
+      <div class="about-photo-wrap reveal">
+        <div class="about-photo">
+          <span class="tag">יועץ פיננסי מוסמך</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h6v6"/></svg>
+        </div>
       </div>
       <div class="about-copy reveal">
         <span class="eyebrow">קצת עליי</span>
@@ -691,19 +796,19 @@
           <h3>דרכים ליצור קשר</h3>
           <p>אפשר גם בלי הטופס - מוזמנ/ת לפנות ישירות.</p>
           <a class="contact-detail" href="tel:0501234567">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.79.63 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.3 1.75.51 2.65.63A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.79.63 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.3 1.75.51 2.65.63A2 2 0 0 1 22 16.92z"/></svg></span>
             050-1234567
           </a>
           <a class="contact-detail" href="mailto:info@example.co.il">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
             info@example.co.il
           </a>
           <a class="contact-detail" href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
             פגישות אונליין ופרונטלית, בכל הארץ
           </a>
           <a class="contact-detail" href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
             זמין/ה לשאלות גם בין הפגישות
           </a>
         </div>
